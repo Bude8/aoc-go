@@ -8,67 +8,53 @@ import (
 )
 
 func calculateScorePart1(opponentHand string, ourHand string) int {
-	// A, X = Rock
-	// B, Y = Paper
-	// C, Z = Scissors
 	var score = 0
-	if ourHand == "X" {
-		score += 1
-	} else if ourHand == "Y" {
-		score += 2
-	} else if ourHand == "Z" {
-		score += 3
-	}
-
-	if opponentHand == "A" && ourHand == "X" ||
-		opponentHand == "B" && ourHand == "Y" ||
-		opponentHand == "C" && ourHand == "Z" {
-		score += 3
-	} else if opponentHand == "A" && ourHand == "Y" ||
-		opponentHand == "B" && ourHand == "Z" ||
-		opponentHand == "C" && ourHand == "X" {
-		score += 6
+	switch true {
+	case (opponentHand == "A" && ourHand == "X"):
+		score = 4
+	case (opponentHand == "A" && ourHand == "Y"):
+		score = 8
+	case (opponentHand == "A" && ourHand == "Z"):
+		score = 3
+	case (opponentHand == "B" && ourHand == "X"):
+		score = 1
+	case (opponentHand == "B" && ourHand == "Y"):
+		score = 5
+	case (opponentHand == "B" && ourHand == "Z"):
+		score = 9
+	case (opponentHand == "C" && ourHand == "X"):
+		score = 7
+	case (opponentHand == "C" && ourHand == "Y"):
+		score = 2
+	case (opponentHand == "C" && ourHand == "Z"):
+		score = 6
 	}
 	return score
 }
 
 func calculateScorePart2(opponentHand string, outcome string) int {
-	// X = Lose
-	// Y = Draw
-	// Z = Win
-	var ourHand = ""
-	if outcome == "X" {
-		if opponentHand == "A" {
-			ourHand = "Z"
-		}
-		if opponentHand == "B" {
-			ourHand = "X"
-		}
-		if opponentHand == "C" {
-			ourHand = "Y"
-		}
-	} else if outcome == "Y" {
-		if opponentHand == "A" {
-			ourHand = "X"
-		}
-		if opponentHand == "B" {
-			ourHand = "Y"
-		}
-		if opponentHand == "C" {
-			ourHand = "Z"
-		}
-	} else if outcome == "Z" {
-		if opponentHand == "A" {
-			ourHand = "Y"
-		}
-		if opponentHand == "B" {
-			ourHand = "Z"
-		}
-		if opponentHand == "C" {
-			ourHand = "X"
-		}
+	var score = 0
+	switch true {
+	case (opponentHand == "A" && outcome == "X"):
+		score = 3
+	case (opponentHand == "A" && outcome == "Y"):
+		score = 4
+	case (opponentHand == "A" && outcome == "Z"):
+		score = 8
+	case (opponentHand == "B" && outcome == "X"):
+		score = 1
+	case (opponentHand == "B" && outcome == "Y"):
+		score = 5
+	case (opponentHand == "B" && outcome == "Z"):
+		score = 9
+	case (opponentHand == "C" && outcome == "X"):
+		score = 2
+	case (opponentHand == "C" && outcome == "Y"):
+		score = 6
+	case (opponentHand == "C" && outcome == "Z"):
+		score = 7
 	}
-	return calculateScorePart1(opponentHand, ourHand)
+	return score
 }
 
 func main() {
